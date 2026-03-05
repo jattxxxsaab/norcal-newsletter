@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NorCal Real Estate Weekly — March 3-7, 2026</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #f0883e;
+    --green: #3fb950;
+    --blue: #58a6ff;
+    --red: #f85149;
+    --purple: #bc8cff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'Georgia', 'Times New Roman', serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.7; }
+
+  .masthead { text-align: center; padding: 50px 20px 40px; border-bottom: 2px solid var(--accent); margin-bottom: 40px; }
+  .masthead .logo { font-size: 48px; margin-bottom: 10px; }
+  .masthead h1 { font-size: 2.2em; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+  .masthead .tagline { color: var(--muted); font-size: 1.1em; margin-top: 8px; font-style: italic; }
+  .masthead .issue { color: var(--blue); font-size: 0.9em; margin-top: 15px; font-family: system-ui, sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+
+  .section { margin-bottom: 45px; }
+  .section-label { font-family: system-ui, sans-serif; font-size: 0.75em; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); margin-bottom: 8px; font-weight: 700; }
+  .section h2 { font-size: 1.6em; margin-bottom: 15px; color: var(--text); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+
+  .highlight-box { background: var(--card); border-left: 4px solid var(--accent); border-radius: 0 12px 12px 0; padding: 25px; margin: 20px 0; }
+  .highlight-box .number { font-size: 2.5em; font-weight: 800; color: var(--accent); font-family: system-ui, sans-serif; }
+  .highlight-box .label { color: var(--muted); font-size: 0.9em; }
+
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 20px 0; }
+  .stat { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
+  .stat .val { font-size: 1.8em; font-weight: 800; color: var(--green); font-family: system-ui, sans-serif; }
+  .stat .val.down { color: var(--red); }
+  .stat .val.neutral { color: var(--blue); }
+  .stat .desc { color: var(--muted); font-size: 0.8em; margin-top: 4px; font-family: system-ui, sans-serif; }
+
+  .story { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 25px; margin: 20px 0; }
+  .story h3 { font-size: 1.2em; margin-bottom: 10px; color: var(--text); }
+  .story .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.7em; font-family: system-ui, sans-serif; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
+  .story .tag.regulation { background: rgba(248,81,73,0.15); color: var(--red); border: 1px solid rgba(248,81,73,0.3); }
+  .story .tag.market { background: rgba(63,185,80,0.15); color: var(--green); border: 1px solid rgba(63,185,80,0.3); }
+  .story .tag.rates { background: rgba(88,166,255,0.15); color: var(--blue); border: 1px solid rgba(88,166,255,0.3); }
+  .story .tag.investment { background: rgba(188,140,255,0.15); color: var(--purple); border: 1px solid rgba(188,140,255,0.3); }
+  .story .tag.alert { background: rgba(240,136,62,0.15); color: var(--accent); border: 1px solid rgba(240,136,62,0.3); }
+  .story p { color: var(--muted); font-size: 0.95em; }
+  .story .takeaway { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); color: var(--accent); font-weight: 600; font-size: 0.9em; font-style: italic; }
+
+  .market-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-family: system-ui, sans-serif; }
+  .market-table th { text-align: left; color: var(--muted); font-size: 0.8em; text-transform: uppercase; letter-spacing: 1px; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+  .market-table td { padding: 12px; border-bottom: 1px solid var(--border); font-size: 0.9em; }
+  .market-table .city { font-weight: 600; color: var(--text); }
+  .market-table .price { color: var(--green); font-weight: 700; }
+  .market-table .change { font-weight: 600; }
+  .market-table .up { color: var(--green); }
+  .market-table .down { color: var(--red); }
+
+  .tip-box { background: linear-gradient(135deg, rgba(240,136,62,0.1), rgba(188,140,255,0.1)); border: 1px solid var(--accent); border-radius: 12px; padding: 25px; margin: 20px 0; }
+  .tip-box h3 { color: var(--accent); margin-bottom: 10px; }
+  .tip-box p { color: var(--text); font-size: 0.95em; }
+
+  .footer { text-align: center; color: var(--muted); font-size: 0.8em; padding: 30px 20px; border-top: 1px solid var(--border); margin-top: 50px; font-family: system-ui, sans-serif; }
+  .footer a { color: var(--blue); text-decoration: none; }
+
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 40px 0; }
+
+  @media (max-width: 600px) {
+    body { padding: 12px; }
+    .masthead h1 { font-size: 1.6em; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .highlight-box .number { font-size: 2em; }
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="logo">🏡</div>
+  <h1>NorCal Real Estate Weekly</h1>
+  <div class="tagline">Northern California Market Intelligence for Investors & Agents</div>
+  <div class="issue">Vol. 1 — Week of March 3, 2026 | By Apex Realty</div>
+</div>
+
+<!-- MARKET SNAPSHOT -->
+<div class="section">
+  <div class="section-label">📊 Market Snapshot</div>
+  <h2>This Week's Numbers</h2>
+
+  <div class="stats-grid">
+    <div class="stat">
+      <div class="val neutral">6.71%</div>
+      <div class="desc">30-Year Fixed Rate</div>
+    </div>
+    <div class="stat">
+      <div class="val">198/day</div>
+      <div class="desc">CA Closed Sales</div>
+    </div>
+    <div class="stat">
+      <div class="val">327/day</div>
+      <div class="desc">New Listings</div>
+    </div>
+    <div class="stat">
+      <div class="val neutral">238/day</div>
+      <div class="desc">Pending Sales</div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap;">
+      <div>
+        <div class="number">+2%</div>
+        <div class="label">Projected CA Sales Growth in 2026</div>
+      </div>
+      <div style="flex:1; min-width:200px;">
+        <p style="color:var(--muted); font-size:0.9em;">C.A.R. forecasts 274,400 existing home sales statewide in 2026, up from 269,000 in 2025. New listings are outpacing closed sales, signaling more inventory for buyers heading into spring.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- NORCAL MARKET DATA -->
+<div class="section">
+  <div class="section-label">🏠 NorCal Market Data</div>
+  <h2>Median Home Prices by Market</h2>
+
+  <table class="market-table">
+    <thead>
+      <tr>
+        <th>Market</th>
+        <th>Median Price</th>
+        <th>YoY Change</th>
+        <th>Inventory</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="city">San Francisco</td>
+        <td class="price">$1,395,000</td>
+        <td class="change up">+3.2%</td>
+        <td>2.1 months</td>
+      </tr>
+      <tr>
+        <td class="city">San Jose / Silicon Valley</td>
+        <td class="price">$1,520,000</td>
+        <td class="change up">+4.1%</td>
+        <td>1.8 months</td>
+      </tr>
+      <tr>
+        <td class="city">Sacramento</td>
+        <td class="price">$535,000</td>
+        <td class="change up">+5.7%</td>
+        <td>2.4 months</td>
+      </tr>
+      <tr>
+        <td class="city">Stockton / San Joaquin</td>
+        <td class="price">$475,000</td>
+        <td class="change up">+6.3%</td>
+        <td>2.8 months</td>
+      </tr>
+      <tr>
+        <td class="city">Modesto / Stanislaus</td>
+        <td class="price">$445,000</td>
+        <td class="change up">+5.1%</td>
+        <td>2.6 months</td>
+      </tr>
+      <tr>
+        <td class="city">Tracy / Mountain House</td>
+        <td class="price">$725,000</td>
+        <td class="change up">+4.8%</td>
+        <td>2.2 months</td>
+      </tr>
+      <tr>
+        <td class="city">Merced</td>
+        <td class="price">$385,000</td>
+        <td class="change up">+7.2%</td>
+        <td>3.1 months</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="color:var(--muted); font-size:0.85em; font-family:system-ui; margin-top:10px;">Source: C.A.R., Zillow, Redfin — Data as of Feb 2026. Central Valley continues outpacing Bay Area in YoY growth.</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- TOP STORIES -->
+<div class="section">
+  <div class="section-label">📰 Top Stories</div>
+  <h2>What You Need to Know</h2>
+
+  <div class="story">
+    <span class="tag alert">🚨 Action Required</span>
+    <h3>New FinCEN Rules for Real Estate — Now in Effect</h3>
+    <p>As of March 1, 2026, FinCEN's Residential Real Estate Reporting Rules are live. If you hold property through an LLC, partnership, or trust and do an all-cash transfer to another entity, the closing agent must now file a report with the Treasury.</p>
+    <p style="margin-top:10px;">Key exemptions: transfers due to death, divorce, court orders, and individual-to-own-trust transfers (standard estate planning funding deeds) are exempt. But gifts to someone else's trust or entity-to-entity transfers may trigger reporting.</p>
+    <div class="takeaway">🎯 Takeaway: If you have investment LLCs, talk to your attorney before your next transfer. This affects flippers, investors, and anyone moving properties between entities.</div>
+  </div>
+
+  <div class="story">
+    <span class="tag market">Market Data</span>
+    <h3>CA Housing Feb 2026: Inventory Rising, Demand Steady</h3>
+    <p>C.A.R.'s February 2026 report shows 327 new listings per day statewide vs 198 closed sales — a growing inventory pipeline. Pending sales at 238/day suggest buyer demand remains healthy. 24.2% of REALTORS® reported closing a sale last week, up 0.4% from prior quarter.</p>
+    <p style="margin-top:10px;">However, only 12.4% of agents expect sales to increase next week, and just 5.9% expect prices to rise — both down from last quarter. Spring market may bring more balanced conditions.</p>
+    <div class="takeaway">🎯 Takeaway: We're entering a healthier market with more options for buyers. Sellers still have leverage in low-inventory areas like Tracy and San Jose, but the days of 15 offers are fading.</div>
+  </div>
+
+  <div class="story">
+    <span class="tag rates">Interest Rates</span>
+    <h3>Mortgage Rates Holding Steady Near 6.7%</h3>
+    <p>The 30-year fixed rate is hovering around 6.71% this week, roughly flat from last month. The Fed has signaled potential rate cuts later in 2026, but inflation data remains mixed. Most economists expect rates to drift toward 6.0-6.5% by year-end if the economy cooperates.</p>
+    <div class="takeaway">🎯 Takeaway: Don't wait for 5% rates — they're not coming back anytime soon. Today's rates are the new normal. Buy now, refinance later.</div>
+  </div>
+
+  <div class="story">
+    <span class="tag investment">Investment Spotlight</span>
+    <h3>Central Valley: Still the Best Value Play in NorCal</h3>
+    <p>With median prices in Modesto ($445K), Stockton ($475K), and Merced ($385K) — all with 5-7% annual appreciation — the Central Valley remains the strongest value play for investors in Northern California. Cap rates on multi-family properties are running 5.5-7%, well above Bay Area's 3-4%.</p>
+    <p style="margin-top:10px;">Commercial/industrial is hot too — truck yards, warehouses, and logistics properties are seeing increased demand as e-commerce and Central Valley growth drive distribution needs.</p>
+    <div class="takeaway">🎯 Takeaway: The Central Valley is where cash flow lives. Bay Area appreciation is slowing; CV appreciation is accelerating. Math favors the Valley right now.</div>
+  </div>
+
+  <div class="story">
+    <span class="tag regulation">Policy Watch</span>
+    <h3>Sacramento's ADU Boom Continues</h3>
+    <p>California's ADU-friendly laws continue to drive construction across NorCal. Sacramento County saw a 23% increase in ADU permits filed in Q4 2025 vs Q4 2024. With AB 1033 allowing ADUs to be sold separately as condos in participating cities, this is creating new investment opportunities for creative builders.</p>
+    <div class="takeaway">🎯 Takeaway: If you have a property with room for an ADU in the Central Valley, you're sitting on untapped equity. Build costs are $150-250K; value add is often $200-350K.</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- DEAL OF THE WEEK -->
+<div class="section">
+  <div class="section-label">⭐ Deal of the Week</div>
+  <h2>Central Valley Pick</h2>
+
+  <div class="highlight-box">
+    <h3 style="color:var(--accent); font-size:1.3em; margin-bottom:10px;">10-Acre Truck Yard — Manteca</h3>
+    <p style="color:var(--text); font-size:1.1em; margin-bottom:8px;"><strong style="color:var(--green); font-size:1.3em;">$715,000</strong> • 10 acres • Commercial Zoning</p>
+    <p style="color:var(--muted); font-size:0.9em;">Best value truck yard in the Central Valley right now. 10 acres of commercial land with freeway access at $71.5K/acre — well below comparable properties going for $300-500K/acre in Stockton. Contact: Arman Singh, 209-603-9890.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PRO TIP -->
+<div class="tip-box">
+  <h3>💡 Agent Pro Tip of the Week</h3>
+  <p>With new listings outpacing sales, spring 2026 is shaping up to be the most balanced market we've seen since 2019. Coach your sellers on pricing strategy NOW — the days of listing 10% above comps and getting multiple offers are over in most NorCal markets. Price right from day one, or sit on market for 45+ days. The data doesn't lie.</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- QUICK HITS -->
+<div class="section">
+  <div class="section-label">⚡ Quick Hits</div>
+  <h2>Around NorCal</h2>
+
+  <div style="display:grid; gap:12px; margin-top:15px;">
+    <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px; display:flex; gap:12px; align-items:center;">
+      <span style="font-size:1.5em;">🏗️</span>
+      <div>
+        <div style="font-weight:600; font-size:0.95em;">Mountain House expanding</div>
+        <div style="color:var(--muted); font-size:0.85em;">New phases in Mountain House continue to draw Bay Area commuters. Median up to $725K.</div>
+      </div>
+    </div>
+    <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px; display:flex; gap:12px; align-items:center;">
+      <span style="font-size:1.5em;">🏭</span>
+      <div>
+        <div style="font-weight:600; font-size:0.95em;">Stockton industrial demand surging</div>
+        <div style="color:var(--muted); font-size:0.85em;">Warehouse/logistics vacancy below 4% in San Joaquin County. Rents up 12% YoY.</div>
+      </div>
+    </div>
+    <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px; display:flex; gap:12px; align-items:center;">
+      <span style="font-size:1.5em;">🚄</span>
+      <div>
+        <div style="font-weight:600; font-size:0.95em;">Valley Link BART extension progressing</div>
+        <div style="color:var(--muted); font-size:0.85em;">Tracy-to-Dublin rail project advancing through environmental review. Game changer for CV property values.</div>
+      </div>
+    </div>
+    <div style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px; display:flex; gap:12px; align-items:center;">
+      <span style="font-size:1.5em;">📈</span>
+      <div>
+        <div style="font-weight:600; font-size:0.95em;">Merced leads NorCal appreciation</div>
+        <div style="color:var(--muted); font-size:0.85em;">UC Merced effect continues — 7.2% YoY growth makes it the fastest appreciating NorCal market.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p style="font-size:1.1em; color:var(--accent); margin-bottom:10px; font-weight:600;">Apex Realty</p>
+  <p>Jimmy Bhullar | DRE# Licensed Broker</p>
+  <p style="margin-top:8px;">📱 (408) 656-2115 | 📧 jimmy@apexrealty.io</p>
+  <p style="margin-top:15px; font-size:0.75em;">Published weekly on Mondays. Data sourced from C.A.R., Zillow, Redfin, and local MLS.</p>
+  <p style="font-size:0.75em; margin-top:5px;">🐕 Powered by Jaks | © 2026 Apex Realty</p>
+</div>
+
+</body>
+</html>
